@@ -28,7 +28,6 @@ class CustomElevatedButton extends StatelessWidget {
         child: Stack(
           children: [
             Center(child: Text("Continue", style: AppStyles.font19BoldWhite)),
-            Spacer(),
             Positioned(
               right: 0,
               top: 16.h,
