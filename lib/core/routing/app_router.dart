@@ -1,16 +1,23 @@
+import 'package:chat_bot_app/core/di/dependency_injection.dart';
 import 'package:chat_bot_app/core/routing/routes.dart';
+import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:chat_bot_app/features/chat/ui/chat_screen.dart';
 import 'package:chat_bot_app/features/on_boarding/ui/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
-        case Routes.chatScreen:
-        return MaterialPageRoute(builder: (_) => const ChatScreen());
+      case Routes.chatScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<ChatCubit>(
+            create: (context) => getIt<ChatCubit>(),
+            child: const ChatScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

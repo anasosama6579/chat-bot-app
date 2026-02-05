@@ -23,6 +23,24 @@ class AppStyles {
     fontWeight: FontWeight.w700,
     color: AppColors.mainBlue,
   );
+  static TextStyle font13BoldDarkGrey = TextStyle(
+    fontFamily: "Nunito",
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkGrey,
+  );
+  static TextStyle font13BoldWhite = TextStyle(
+    fontFamily: "Nunito",
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  );
+  static TextStyle font13BoldRed = TextStyle(
+    fontFamily: "Nunito",
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.red,
+  );
   static TextStyle font17MediumGreen = TextStyle(
     fontFamily: "Nunito",
     fontSize: 17.sp,

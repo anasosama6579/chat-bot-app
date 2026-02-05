@@ -1,17 +1,21 @@
 import 'package:chat_bot_app/assets/assets.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
+import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ChatTextField extends StatelessWidget {
-  const ChatTextField({super.key});
+  const ChatTextField({super.key, required this.sendOnPressed});
+
+  final VoidCallback sendOnPressed;
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      padding: EdgeInsets.only(left: 22.w,right: 5.w),
+    return Container(
+      padding: EdgeInsets.only(left: 22.w, right: 5.w),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(30.r),
@@ -27,6 +31,7 @@ class ChatTextField extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              controller: context.read<ChatCubit>().textEditingController,
               maxLines: 3,
               minLines: 1,
               cursorColor: AppColors.mainBlue,
@@ -47,7 +52,7 @@ class ChatTextField extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             icon: SvgPicture.asset(Assets.send),
-            onPressed: () {},
+            onPressed: sendOnPressed,
           ),
         ],
       ),
