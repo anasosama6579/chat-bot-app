@@ -2,7 +2,9 @@ import 'package:chat_bot_app/core/assets/assets.dart';
 import 'package:chat_bot_app/core/helper/spacing.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
+import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,7 +21,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       elevation: 0,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () => context.read<ChatCubit>().emitInitial(),
         icon: SvgPicture.asset(Assets.leftArrow),
         padding: EdgeInsets.zero,
       ),

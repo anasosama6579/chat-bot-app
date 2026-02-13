@@ -24,4 +24,6 @@ class ChatCubit extends Cubit<ChatState> {
     );
   }
 
+  void emitInitial() => emit(ChatState.initial());
+
 }

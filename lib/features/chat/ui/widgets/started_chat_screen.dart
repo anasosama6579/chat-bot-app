@@ -11,12 +11,14 @@ class StartedChatScreen extends StatelessWidget {
   final List<Content> messages;
   final ChatState state;
   final Function(String) onResend;
+  final ScrollController scrollController;
 
   const StartedChatScreen({
     super.key,
     required this.messages,
     required this.state,
     required this.onResend,
+    required this.scrollController,
   });
 
   @override
@@ -26,26 +28,27 @@ class StartedChatScreen extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
+            controller: scrollController,
             itemCount: messages.length + (state is ChatLoading ? 1 : 0),
             itemBuilder: (context, index) {
               if (state is ChatLoading && index == messages.length) {
                 return const LoadingMessage();
               }
-              final Content message = messages[index];
-              final String text = message.parts?.first.text ?? "";
-              final bool isUserMessage = message.role == "user";
+              final Content content = messages[index];
+              final String message = content.parts?.first.text ?? "";
+              final bool isUserMessage = content.role == "user";
               final bool isLastMessage = (index == messages.length - 1);
 
               if (isLastMessage && state is ChatFailure && isUserMessage) {
                 return ResendMessage(
-                  message: text,
-                  onResend: () => onResend(text),
+                  message: message,
+                  onResend: () => onResend(message),
                 );
               }
 
               return isUserMessage
-                  ? UserMessage(text: text)
-                  : AiMessage(text: text);
+                  ? UserMessage(text: message)
+                  : AiMessage(text: message);
             },
           ),
         ),

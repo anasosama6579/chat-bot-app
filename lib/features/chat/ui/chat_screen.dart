@@ -18,6 +18,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final List<Content> _messages = [];
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +26,16 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: const ChatAppBar(),
       body: BlocConsumer<ChatCubit, ChatState>(
         listener: (context, state) {
+          _scrollToBottom();
           state.whenOrNull(
             success: (responseBody) {
-              final aiText = responseBody.candidates?.first.content?.parts?.first.text ?? "";
-              _messages.add(Content(role: "model", parts: [Part(text: aiText)]));
+              final aiText =
+                  responseBody.candidates?.first.content?.parts?.first.text ?? "";
+              _messages.add(
+                Content(role: "model", parts: [Part(text: aiText)]));
             },
+            initial: () => _messages.clear(),
           );
-          state.whenOrNull(
-            failure: (message) {
-              _messages.removeLast();
-            });
         },
         builder: (context, state) {
           return Padding(
@@ -42,23 +43,19 @@ class _ChatScreenState extends State<ChatScreen> {
             child: SizedBox.expand(
               child: Stack(
                 children: [
-
                   _messages.isEmpty
-                      ?  InitialChatScreen(onSuggestionTap:_sendMessage,)
-                      :
-                  StartedChatScreen(
-                    messages: _messages,
-                    state: state,
-                    onResend: _sendMessage,
-                  ),
-
+                      ? InitialChatScreen(onSuggestionTap: _sendMessage)
+                      : StartedChatScreen(
+                          messages: _messages,
+                          state: state,
+                          onResend: _sendMessage,
+                          scrollController: _scrollController,
+                        ),
                   Positioned(
                     left: 18.w,
                     right: 18.w,
                     bottom: 0,
-                    child: ChatTextField(
-                      onSend: _sendMessage,
-                    ),
+                    child: ChatTextField(onSend: _sendMessage),
                   ),
                 ],
               ),
@@ -75,4 +72,21 @@ class _ChatScreenState extends State<ChatScreen> {
     context.read<ChatCubit>().emitChatStates(requestBody);
   }
 
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 }
