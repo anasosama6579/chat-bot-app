@@ -20,9 +20,11 @@ Content _$ContentFromJson(Map<String, dynamic> json) => Content(
   parts: (json['parts'] as List<dynamic>?)
       ?.map((e) => Part.fromJson(e as Map<String, dynamic>))
       .toList(),
+  role: json['role'] as String,
 );
 
 Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
+  'role': instance.role,
   'parts': instance.parts,
 };
 

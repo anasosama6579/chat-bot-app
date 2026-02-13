@@ -1,15 +1,14 @@
 import 'package:chat_bot_app/core/helper/spacing.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
-import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ResendMessage extends StatelessWidget {
-  const ResendMessage({super.key, required this.message});
+  const ResendMessage({super.key, required this.message, required this.onResend});
 
   final String message;
+  final VoidCallback onResend;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,6 @@ class ResendMessage extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            // mainAxisSize: MainAxisSize.min,
             children: [
               Text(message, style: AppStyles.font13BoldRed),
               verticalSpacing(5),
@@ -42,7 +40,7 @@ class ResendMessage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
-                  onPressed: () => context.read<ChatCubit>().emitChatStates(),
+                  onPressed: onResend, // Calls the parent logic
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

@@ -1,19 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'chat_response_body.g.dart';
+part 'chat_response.g.dart';
 
 @JsonSerializable()
-class ChatResponseBody {
+class ChatResponse {
   final List<Candidate>? candidates;
   final UsageMetadata? usageMetadata;
   final String? modelVersion;
   final String? responseId;
 
-  ChatResponseBody(this.candidates, this.usageMetadata, this.modelVersion,
+  ChatResponse(this.candidates, this.usageMetadata, this.modelVersion,
       this.responseId);
 
-  Map<String,dynamic> toJson() => _$ChatResponseBodyToJson(this);
-  factory ChatResponseBody.fromJson(Map<String,dynamic> json) => _$ChatResponseBodyFromJson(json);
+  Map<String,dynamic> toJson() => _$ChatResponseToJson(this);
+  factory ChatResponse.fromJson(Map<String,dynamic> json) => _$ChatResponseFromJson(json);
 
 }
 

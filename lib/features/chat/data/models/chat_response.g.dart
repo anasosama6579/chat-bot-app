@@ -1,26 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'chat_response_body.dart';
+part of 'chat_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatResponseBody _$ChatResponseBodyFromJson(Map<String, dynamic> json) =>
-    ChatResponseBody(
-      (json['candidates'] as List<dynamic>?)
-          ?.map((e) => Candidate.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      json['usageMetadata'] == null
-          ? null
-          : UsageMetadata.fromJson(
-              json['usageMetadata'] as Map<String, dynamic>,
-            ),
-      json['modelVersion'] as String?,
-      json['responseId'] as String?,
-    );
+ChatResponse _$ChatResponseFromJson(Map<String, dynamic> json) => ChatResponse(
+  (json['candidates'] as List<dynamic>?)
+      ?.map((e) => Candidate.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  json['usageMetadata'] == null
+      ? null
+      : UsageMetadata.fromJson(json['usageMetadata'] as Map<String, dynamic>),
+  json['modelVersion'] as String?,
+  json['responseId'] as String?,
+);
 
-Map<String, dynamic> _$ChatResponseBodyToJson(ChatResponseBody instance) =>
+Map<String, dynamic> _$ChatResponseToJson(ChatResponse instance) =>
     <String, dynamic>{
       'candidates': instance.candidates,
       'usageMetadata': instance.usageMetadata,

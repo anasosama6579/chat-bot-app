@@ -16,32 +16,8 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Chat Bot App',
       home: ChatBotApp(appRouter: AppRouter()),
     );
   }
 }
-//? request body
-/// content List <Map<String,dynamic>>
-   /// parts List<Map<String,dynamic>>
-      /// Text String
-
-//? response body
-/// candidates List<Map<String,dynamic>>
-  /// content Map<String,dynamic>
-      /// parts List<Map<String,dynamic>>
-          /// text String
-          /// thought signature String
-      /// role String
-  /// finish response String
-  /// index int
-/// usage meta data Map<String,dynamic>
-  /// prompt token count int
-  /// candidates token count int
-  /// total token cont int
-  /// prompt token details List<Map<String,dynamic>>
-      /// modality String
-      /// token count int
-  /// thoughts token count int
-/// model version String
-/// response ID String

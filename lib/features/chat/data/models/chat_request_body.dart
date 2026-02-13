@@ -16,9 +16,10 @@ class ChatRequestBody {
 
 @JsonSerializable()
 class Content {
+  final String role;
   final List<Part>? parts;
 
-  Content({required this.parts});
+  Content({required this.parts, required this.role});
   Map<String,dynamic> toJson() => _$ContentToJson(this);
   factory Content.fromJson(Map<String,dynamic> json) => _$ContentFromJson(json);
 }

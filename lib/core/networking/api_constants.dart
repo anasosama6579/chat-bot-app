@@ -1,6 +1,6 @@
 class ApiConstants {
   static const String baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
-  static const String apiKey = "AIzaSyCIpjzPnqkPTQz15xQW7yfK3_4LvdT8vbI";
+  static const String apiKey = "AIzaSyDeF_TLFDJzo6IlO-I_7NilBq7GK7gBeYQ";
   static const String key = "x-goog-api-key";
 
 }

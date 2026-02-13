@@ -116,6 +116,10 @@ extension DataSourceExtension on DataSource {
       case DataSource.DEFAULT:
         return ApiErrorModel(
             code: ResponseCode.DEFAULT, message: ResponseMessage.DEFAULT);
+      default:
+        return ApiErrorModel(
+            code: ResponseCode.DEFAULT, message: ResponseMessage.DEFAULT);
+
     }
   }
 }

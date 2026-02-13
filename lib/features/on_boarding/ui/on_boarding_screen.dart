@@ -1,4 +1,4 @@
-import 'package:chat_bot_app/assets/assets.dart';
+import 'package:chat_bot_app/core/assets/assets.dart';
 import 'package:chat_bot_app/core/helper/extensions.dart';
 import 'package:chat_bot_app/core/helper/spacing.dart';
 import 'package:chat_bot_app/core/routing/routes.dart';

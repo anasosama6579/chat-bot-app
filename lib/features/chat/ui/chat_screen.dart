@@ -1,3 +1,4 @@
+import 'package:chat_bot_app/features/chat/data/models/chat_request_body.dart';
 import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:chat_bot_app/features/chat/logic/chat_state.dart';
 import 'package:chat_bot_app/features/chat/ui/widgets/chat_app_bar.dart';
@@ -8,39 +9,70 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
   @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final List<Content> _messages = [];
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatCubit, ChatState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: ChatAppBar(),
-          body: Padding(
+    return Scaffold(
+      appBar: const ChatAppBar(),
+      body: BlocConsumer<ChatCubit, ChatState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            success: (responseBody) {
+              final aiText = responseBody.candidates?.first.content?.parts?.first.text ?? "";
+              _messages.add(Content(role: "model", parts: [Part(text: aiText)]));
+            },
+          );
+          state.whenOrNull(
+            failure: (message) {
+              _messages.removeLast();
+            });
+        },
+        builder: (context, state) {
+          return Padding(
             padding: EdgeInsets.only(bottom: 35.h),
             child: SizedBox.expand(
               child: Stack(
                 children: [
-                  ?state.maybeWhen(
-                    initial: () => InitialChatScreen(),
-                    orElse: () => StartedChatScreen(),
+
+                  _messages.isEmpty
+                      ?  InitialChatScreen(onSuggestionTap:_sendMessage,)
+                      :
+                  StartedChatScreen(
+                    messages: _messages,
+                    state: state,
+                    onResend: _sendMessage,
                   ),
+
                   Positioned(
                     left: 18.w,
                     right: 18.w,
                     bottom: 0,
                     child: ChatTextField(
-                      sendOnPressed: () =>
-                          context.read<ChatCubit>().emitChatStates(),
+                      onSend: _sendMessage,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
+
+  void _sendMessage(String text) {
+    _messages.add(Content(role: "user", parts: [Part(text: text)]));
+    final requestBody = ChatRequestBody(contents: _messages);
+    context.read<ChatCubit>().emitChatStates(requestBody);
+  }
+
 }

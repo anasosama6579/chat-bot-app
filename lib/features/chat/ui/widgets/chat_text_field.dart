@@ -1,16 +1,33 @@
-import 'package:chat_bot_app/assets/assets.dart';
+import 'package:chat_bot_app/core/assets/assets.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
-import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ChatTextField extends StatelessWidget {
-  const ChatTextField({super.key, required this.sendOnPressed});
+class ChatTextField extends StatefulWidget {
+  const ChatTextField({super.key, required this.onSend});
 
-  final VoidCallback sendOnPressed;
+  final Function(String) onSend;
+
+  @override
+  State<ChatTextField> createState() => _ChatTextFieldState();
+}
+
+class _ChatTextFieldState extends State<ChatTextField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +48,7 @@ class ChatTextField extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
-              controller: context.read<ChatCubit>().textEditingController,
+              controller: _controller,
               maxLines: 3,
               minLines: 1,
               cursorColor: AppColors.mainBlue,
@@ -52,7 +69,12 @@ class ChatTextField extends StatelessWidget {
           IconButton(
             padding: EdgeInsets.zero,
             icon: SvgPicture.asset(Assets.send),
-            onPressed: sendOnPressed,
+            onPressed: () {
+              if (_controller.text.trim().isNotEmpty) {
+                widget.onSend(_controller.text);
+                _controller.clear();
+              }
+            },
           ),
         ],
       ),

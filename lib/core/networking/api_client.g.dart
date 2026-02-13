@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api_services.dart';
+part of 'api_client.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'api_services.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _ApiServices implements ApiServices {
-  _ApiServices(this._dio, {this.baseUrl, this.errorLogger}) {
+class _ApiClient implements ApiClient {
+  _ApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??=
         'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent';
   }
@@ -23,13 +23,13 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ChatResponseBody> chat(ChatRequestBody chatRequestBody) async {
+  Future<ChatResponse> chat(ChatRequestBody chatRequestBody) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(chatRequestBody.toJson());
-    final _options = _setStreamType<ChatResponseBody>(
+    final _options = _setStreamType<ChatResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -40,9 +40,9 @@ class _ApiServices implements ApiServices {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ChatResponseBody _value;
+    late ChatResponse _value;
     try {
-      _value = ChatResponseBody.fromJson(_result.data!);
+      _value = ChatResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

@@ -1,10 +1,8 @@
-import 'package:chat_bot_app/assets/assets.dart';
+import 'package:chat_bot_app/core/assets/assets.dart';
 import 'package:chat_bot_app/core/helper/spacing.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
-import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,7 +19,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       elevation: 0,
       leading: IconButton(
-        onPressed: () => context.read<ChatCubit>().emitInitialChatStates(),
+        onPressed: () {},
         icon: SvgPicture.asset(Assets.leftArrow),
         padding: EdgeInsets.zero,
       ),
@@ -36,14 +34,11 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               Text("Chat Bot", style: AppStyles.font20BoldMainBlue),
               Row(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: AppColors.green,
-                    radius: 3.r,
-                  ),
+                  CircleAvatar(backgroundColor: AppColors.green, radius: 3.r),
                   horizontalSpacing(5),
                   Text("Online", style: AppStyles.font17MediumGreen),
                 ],
-              )
+              ),
             ],
           ),
         ],
@@ -63,11 +58,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(1.0),
-        child: Divider(
-          color: AppColors.lightestGrey,
-          height: 1,
-          thickness: 1,
-        ),
+        child: Divider(color: AppColors.lightestGrey, height: 1, thickness: 1),
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:chat_bot_app/assets/assets.dart';
+import 'package:chat_bot_app/core/assets/assets.dart';
 import 'package:chat_bot_app/core/theming/app_colors.dart';
 import 'package:chat_bot_app/core/theming/app_styles.dart';
 import 'package:flutter/material.dart';
