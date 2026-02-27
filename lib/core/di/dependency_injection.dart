@@ -1,6 +1,5 @@
 import 'package:chat_bot_app/core/networking/api_client.dart';
 import 'package:chat_bot_app/core/networking/dio_factory.dart';
-import 'package:chat_bot_app/features/chat/data/repo/chat_repo.dart';
 import 'package:chat_bot_app/features/chat/data/repo/chat_repo_impl.dart';
 import 'package:chat_bot_app/features/chat/data/services/chat_service.dart';
 import 'package:chat_bot_app/features/chat/logic/chat_cubit.dart';
@@ -15,7 +14,7 @@ Future<void> setupGeIt() async {
   getIt.registerLazySingleton<ApiClient>(() => ApiClient(dio));
   getIt.registerLazySingleton<ChatService>(() => ChatService(getIt<ApiClient>()));
   getIt.registerLazySingleton<ChatRepoImpl>(() => ChatRepoImpl(chatService: getIt<ChatService>()));
-  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<ChatRepo>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt<ChatRepoImpl>()));
 
 
 

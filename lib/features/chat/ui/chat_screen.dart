@@ -34,6 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
               _messages.add(
                 Content(role: "model", parts: [Part(text: aiText)]));
             },
+            // failure: (message) => _messages.length > 1 ? _messages.removeLast() : null,
             initial: () => _messages.clear(),
           );
         },
@@ -48,7 +49,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       : StartedChatScreen(
                           messages: _messages,
                           state: state,
-                          onResend: _sendMessage,
                           scrollController: _scrollController,
                         ),
                   Positioned(
