@@ -14,6 +14,4 @@ class Assets {
   static const String send = "assets/svgs/send-icon.svg";
   static const String translate = "assets/svgs/translate-icon.svg";
   static const String volume = "assets/svgs/volume-high.svg";
-
-
 }

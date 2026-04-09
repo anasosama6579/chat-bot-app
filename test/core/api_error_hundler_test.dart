@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockDioException extends Mock implements DioException {}
-class MockResponse<T> extends Mock implements Response<T> {}
 
+class MockResponse<T> extends Mock implements Response<T> {}
 
 void main() {
   group('ErrorHandler Tests', () {
@@ -17,50 +17,55 @@ void main() {
       mockResponse = MockResponse();
     });
 
-    test('should return DEFAULT error when exception is not a DioException', () {
-      final genericException = Exception("Just a random crash");
+    test(
+      'should return DEFAULT error when exception is not a DioException',
+      () {
+        final genericException = Exception("Just a random crash");
 
-      final handler = ErrorHandler.handle(genericException);
-      expect(handler.apiErrorModel.code, ResponseCode.DEFAULT);
-      expect(handler.apiErrorModel.message, ResponseMessage.DEFAULT);
-    });
+        final handler = ErrorHandler.handle(genericException);
+        expect(handler.apiErrorModel.code, ResponseCode.defaultError);
+        expect(handler.apiErrorModel.message, ResponseMessage.defaultError);
+      },
+    );
 
     test('should map connectionTimeout to CONNECT_TIMEOUT Failure', () {
-      when(() => mockDioException.type).thenReturn(DioExceptionType.connectionTimeout);
+      when(
+        () => mockDioException.type,
+      ).thenReturn(DioExceptionType.connectionTimeout);
       final handler = ErrorHandler.handle(mockDioException);
 
-      expect(handler.apiErrorModel.code, ResponseCode.CONNECT_TIMEOUT);
-      expect(handler.apiErrorModel.message, ResponseMessage.CONNECT_TIMEOUT);
+      expect(handler.apiErrorModel.code, ResponseCode.connectTimeout);
+      expect(handler.apiErrorModel.message, ResponseMessage.connectTimeout);
     });
 
     test('should parse ApiErrorModel correctly from a badResponse', () {
-
-      when(() => mockDioException.type).thenReturn(DioExceptionType.badResponse);
+      when(
+        () => mockDioException.type,
+      ).thenReturn(DioExceptionType.badResponse);
       when(() => mockDioException.response).thenReturn(mockResponse);
 
       when(() => mockResponse.statusCode).thenReturn(400);
       when(() => mockResponse.statusMessage).thenReturn('Bad Request');
-      when(() => mockResponse.data).thenReturn({
-        "code": 400,
-        "message": "Bad Request"
-      });
-
+      when(
+        () => mockResponse.data,
+      ).thenReturn({"code": 400, "message": "Bad Request"});
 
       final handler = ErrorHandler.handle(mockDioException);
-
 
       expect(handler.apiErrorModel.code, 400);
       expect(handler.apiErrorModel.message, "Bad Request");
     });
 
     test('should fallback to DEFAULT if badResponse lacks response data', () {
-      when(() => mockDioException.type).thenReturn(DioExceptionType.badResponse);
+      when(
+        () => mockDioException.type,
+      ).thenReturn(DioExceptionType.badResponse);
       when(() => mockDioException.response).thenReturn(null);
 
       final handler = ErrorHandler.handle(mockDioException);
 
-      expect(handler.apiErrorModel.code, ResponseCode.DEFAULT);
-      expect(handler.apiErrorModel.message, ResponseMessage.DEFAULT);
+      expect(handler.apiErrorModel.code, ResponseCode.defaultError);
+      expect(handler.apiErrorModel.message, ResponseMessage.defaultError);
     });
   });
 }

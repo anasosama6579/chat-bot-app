@@ -12,9 +12,9 @@ class IconTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(icon,),
+        SvgPicture.asset(icon),
         verticalSpacing(5),
-        Text(text,style:AppStyles.font14BoldDarkGrey ,),
+        Text(text, style: AppStyles.font14BoldDarkGrey),
       ],
     );
   }

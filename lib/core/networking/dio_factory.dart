@@ -23,7 +23,6 @@ class DioFactory {
     }
   }
 
-
   static void addDioInterceptor() {
     dio?.interceptors.add(
       InterceptorsWrapper(

@@ -12,7 +12,7 @@ class LoadingMessage extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 60.w,vertical: 18.h),
+          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 18.h),
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.h),
           decoration: BoxDecoration(
             color: AppColors.filledGrey,
@@ -22,13 +22,12 @@ class LoadingMessage extends StatelessWidget {
               bottomRight: Radius.circular(30.r),
             ),
           ),
-          child: LoadingAnimationWidget.waveDots(color: AppColors.darkGrey, size: 20),
+          child: LoadingAnimationWidget.waveDots(
+            color: AppColors.darkGrey,
+            size: 20,
+          ),
         ),
-        Positioned(
-          left: 29.w,
-          bottom: 0,
-          child: RobotAvatar()
-        ),
+        Positioned(left: 29.w, bottom: 0, child: RobotAvatar()),
       ],
     );
   }

@@ -13,14 +13,14 @@ class RobotAvatar extends StatelessWidget {
       width: 25.w,
       height: 25.h,
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.15),
-              blurRadius: 10,
-            )
-          ]
+        shape: BoxShape.circle,
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.15),
+            blurRadius: 10,
+          ),
+        ],
       ),
       child: Image.asset(Assets.robotImage, fit: BoxFit.contain),
     );

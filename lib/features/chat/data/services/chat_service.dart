@@ -1,6 +1,7 @@
 import 'package:chat_bot_app/core/networking/api_client.dart';
-import 'package:chat_bot_app/features/chat/data/models/chat_request_body.dart' ;
-import 'package:chat_bot_app/features/chat/data/models/chat_response.dart' hide Content;
+import 'package:chat_bot_app/features/chat/data/models/chat_request_body.dart';
+import 'package:chat_bot_app/features/chat/data/models/chat_response.dart'
+    hide Content;
 import 'package:dio/dio.dart';
 
 class ChatService {
@@ -9,7 +10,7 @@ class ChatService {
   ChatService(this.apiClient);
 
   Future<ChatResponse> chat(ChatRequestBody chatRequestBody) async {
-    const int maxRetries = 3;
+    const int maxRetries = 2;
     int attempt = 0;
 
     while (attempt <= maxRetries) {
@@ -19,12 +20,11 @@ class ChatService {
       } catch (error) {
         attempt++;
 
-
         if (attempt > maxRetries || !_isRetryable(error)) {
           rethrow;
         }
 
-        await Future.delayed(Duration(seconds: 4));
+        await Future.delayed(Duration(seconds: 2));
       }
     }
 
@@ -32,7 +32,6 @@ class ChatService {
   }
 
   bool _isRetryable(dynamic error) {
-
     if (error is! DioException) return false;
 
     switch (error.type) {
@@ -59,5 +58,4 @@ class ChatService {
         return false;
     }
   }
-
 }

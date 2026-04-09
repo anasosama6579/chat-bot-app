@@ -30,9 +30,14 @@ class _ChatScreenState extends State<ChatScreen> {
           state.whenOrNull(
             success: (responseBody) {
               final aiText =
-                  responseBody.candidates?.first.content?.parts?.first.text ?? "";
+                  responseBody.candidates?.first.content?.parts?.first.text ??
+                  "";
               _messages.add(
-                Content(role: "model", parts: [Part(text: aiText)]));
+                Content(
+                  role: "model",
+                  parts: [Part(text: aiText)],
+                ),
+              );
             },
             // failure: (message) => _messages.length > 1 ? _messages.removeLast() : null,
             initial: () => _messages.clear(),
@@ -67,7 +72,12 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _sendMessage(String text) {
-    _messages.add(Content(role: "user", parts: [Part(text: text)]));
+    _messages.add(
+      Content(
+        role: "user",
+        parts: [Part(text: text)],
+      ),
+    );
     final requestBody = ChatRequestBody(contents: _messages);
     context.read<ChatCubit>().emitChatStates(requestBody);
   }

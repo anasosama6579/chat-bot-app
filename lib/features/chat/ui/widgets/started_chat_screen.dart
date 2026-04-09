@@ -29,7 +29,7 @@ class StartedChatScreen extends StatelessWidget {
         Expanded(
           child: ListView.builder(
             controller: scrollController,
-            itemCount: messages.length + ((state is ChatLoading ) ? 1 : 0),
+            itemCount: messages.length + ((state is ChatLoading) ? 1 : 0),
             itemBuilder: (context, index) {
               if (state is ChatLoading && index == messages.length) {
                 return const LoadingMessage();

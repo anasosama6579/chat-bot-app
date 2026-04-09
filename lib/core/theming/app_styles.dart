@@ -48,8 +48,8 @@ class AppStyles {
     color: AppColors.green,
   );
 
- static TextStyle font15MediumLightGrey = TextStyle(
-   fontFamily: "Nunito",
+  static TextStyle font15MediumLightGrey = TextStyle(
+    fontFamily: "Nunito",
     fontSize: 15.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.lightGrey,
@@ -73,5 +73,4 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.grey,
   );
-
 }

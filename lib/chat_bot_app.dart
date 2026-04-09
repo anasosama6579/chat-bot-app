@@ -20,9 +20,7 @@ class ChatBotApp extends StatelessWidget {
         onGenerateRoute: appRouter.generateRoute,
         initialRoute: Routes.onBoardingScreen,
         theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            surfaceTintColor: AppColors.white,
-          ),
+          appBarTheme: const AppBarTheme(surfaceTintColor: AppColors.white),
           primaryColor: AppColors.mainBlue,
           scaffoldBackgroundColor: Colors.white,
         ),

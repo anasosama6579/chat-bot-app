@@ -8,5 +8,4 @@ class ChatState<T> with _$ChatState<T> {
   const factory ChatState.loading() = ChatLoading<T>;
   const factory ChatState.success(T data) = ChatSuccess<T>;
   const factory ChatState.failure(String message) = ChatFailure<T>;
-
 }

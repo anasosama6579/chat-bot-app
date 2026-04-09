@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SuggestionsQuestionsWidget extends StatelessWidget {
-  const SuggestionsQuestionsWidget({super.key, required this.onTap, required this.question});
+  const SuggestionsQuestionsWidget({
+    super.key,
+    required this.onTap,
+    required this.question,
+  });
   final VoidCallback onTap;
   final String question;
   @override
@@ -15,14 +19,16 @@ class SuggestionsQuestionsWidget extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Container(
-            padding: EdgeInsets.symmetric( vertical: 10.h),
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             margin: EdgeInsets.symmetric(horizontal: 29.w),
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.filledGrey,
               borderRadius: BorderRadius.circular(30.r),
             ),
-            child: Center(child: Text(question,style: AppStyles.font14MediumGrey,)),
+            child: Center(
+              child: Text(question, style: AppStyles.font14MediumGrey),
+            ),
           ),
         ),
         verticalSpacing(8),

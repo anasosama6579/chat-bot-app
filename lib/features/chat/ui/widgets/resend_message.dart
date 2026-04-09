@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ResendMessage extends StatelessWidget {
-  const ResendMessage({super.key, required this.message, required this.onResend});
+  const ResendMessage({
+    super.key,
+    required this.message,
+    required this.onResend,
+  });
 
   final String message;
   final VoidCallback onResend;
@@ -16,8 +20,18 @@ class ResendMessage extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: FittedBox(
         child: Container(
-          margin: EdgeInsets.only(right: 29.w, left: 70.w, top: 9.h, bottom: 9.h),
-          padding: EdgeInsets.only(top: 10.h,bottom: 5.h, right: 20.w,left: 20.w),
+          margin: EdgeInsets.only(
+            right: 29.w,
+            left: 70.w,
+            top: 9.h,
+            bottom: 9.h,
+          ),
+          padding: EdgeInsets.only(
+            top: 10.h,
+            bottom: 5.h,
+            right: 20.w,
+            left: 20.w,
+          ),
           decoration: BoxDecoration(
             color: Colors.red.shade50,
             borderRadius: BorderRadius.only(

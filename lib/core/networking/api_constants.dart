@@ -1,12 +1,9 @@
 class ApiConstants {
-  static const String baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
+  static const String baseUrl =
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
   static const String apiKey = "AIzaSyDeF_TLFDJzo6IlO-I_7NilBq7GK7gBeYQ";
   static const String key = "x-goog-api-key";
-
 }
-
-
-
 
 class ApiErrors {
   // Client Side / Request Errors
@@ -23,7 +20,8 @@ class ApiErrors {
 
   // Server Side Errors
   static const String internalServerError = "internalServerError"; // 500
-  static const String serviceUnavailable = "serviceUnavailable"; // 503: Model overloaded
+  static const String serviceUnavailable =
+      "serviceUnavailable"; // 503: Model overloaded
 
   // Connectivity & App Errors
   static const String noInternetError = "noInternetError";

@@ -67,6 +67,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
             onPressed: () {},
           ),
           IconButton(
+            key: Key("Send Button"),
             padding: EdgeInsets.zero,
             icon: SvgPicture.asset(Assets.send),
             onPressed: () {

@@ -15,7 +15,7 @@ class AiMessage extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 60.w,vertical: 18.h),
+          margin: EdgeInsets.symmetric(horizontal: 60.w, vertical: 18.h),
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.h),
           decoration: BoxDecoration(
             color: AppColors.filledGrey,
@@ -25,15 +25,12 @@ class AiMessage extends StatelessWidget {
               bottomRight: Radius.circular(30.r),
             ),
           ),
-          child: MarkdownBody(data: text,styleSheet: MarkdownStyleSheet(
-            p: AppStyles.font13BoldDarkGrey
-          )),
+          child: MarkdownBody(
+            data: text,
+            styleSheet: MarkdownStyleSheet(p: AppStyles.font13BoldDarkGrey),
+          ),
         ),
-        Positioned(
-          left: 29.w,
-          bottom: 0,
-          child: RobotAvatar()
-        ),
+        Positioned(left: 29.w, bottom: 0, child: RobotAvatar()),
       ],
     );
   }

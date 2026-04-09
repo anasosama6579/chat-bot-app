@@ -28,10 +28,10 @@ class SuggestionsQuestionsSection extends StatelessWidget {
           children: questions
               .map(
                 (e) => SuggestionsQuestionsWidget(
-              onTap: () => onQuestionTap(e), // Use callback
-              question: e,
-            ),
-          )
+                  onTap: () => onQuestionTap(e), // Use callback
+                  question: e,
+                ),
+              )
               .toList(),
         ),
         verticalSpacing(37),

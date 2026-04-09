@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.0016702">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: flutter pub get" time="2.756921">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: dart format --set-exit-if-changed ." time="1.4302987">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: flutter analyze" time="6.6589078">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: flutter test" time="12.2939506">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: flutter build apk" time="130.3617524">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
