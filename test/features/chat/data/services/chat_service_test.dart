@@ -6,6 +6,8 @@ import 'package:chat_bot_app/features/chat/data/models/chat_request_body.dart';
 import 'package:chat_bot_app/features/chat/data/models/chat_response.dart';
 import 'package:chat_bot_app/features/chat/data/services/chat_service.dart';
 
+// check for changes
+
 class MockApiClient extends Mock implements ApiClient {}
 
 class MockDioException extends Mock implements DioException {}
